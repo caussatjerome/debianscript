@@ -48,5 +48,5 @@ echo '        ;;'>/etc/init.d/zeronet
 echo 'esac'>/etc/init.d/zeronet
 echo 'exit 0'>/etc/init.d/zeronet
 
-sudo chmod 664 /etc/init.d/zeronet
+chmod 664 /etc/init.d/zeronet
 update-rc.d zeronet defaults
