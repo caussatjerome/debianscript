@@ -31,8 +31,15 @@ echo '        ;;'>>/etc/init.d/zeronet
 echo 'esac'>>/etc/init.d/zeronet
 echo 'exit 0'>>/etc/init.d/zeronet
 
+#configure starting
 chmod 775 /etc/init.d/zeronet
 update-rc.d zeronet defaults
+update-rc.d tor enable
+#configure firewall
 iptables -A INPUT -p tcp -m tcp --dport 43110 -j ACCEPT
 iptables-save
+#configure tor
+sed -i '/ControlPort /s/^#//' /etc/tor/torrc
+sed -i '/CookieAuthentication /s/^#//' /etc/tor/torrc
+sed -i '/RunAsDaemon /s/^#//' /etc/tor/torrc
 reboot
