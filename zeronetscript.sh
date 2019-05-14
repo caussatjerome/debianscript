@@ -5,6 +5,13 @@ tar xvpfz master.tar.gz
 rm master.tar.gz
 
 #set as service method 1:
+echo '### BEGIN INIT INFO'>>/etc/systemd/system/zeronet.service
+echo '# Provides:          zeronet'>>/etc/systemd/system/zeronet.service
+echo '# Default-Start:     2 3 4 5'>>/etc/systemd/system/zeronet.service
+echo '# Default-Stop:      0 1 6'>>/etc/systemd/system/zeronet.service
+echo '# Short-Description: Start daemon at boot time'>>/etc/systemd/system/zeronet.service
+echo '# Description:       Enable service provided by daemon.'>>/etc/systemd/system/zeronet.service
+echo '### END INIT INFO'>>/etc/systemd/system/zeronet.service
 echo [Unit]>/etc/systemd/system/zeronet.service
 echo Description=ZeroNet Daemon>>/etc/systemd/system/zeronet.service
 echo Wants=tor.service>>/etc/systemd/system/zeronet.service
