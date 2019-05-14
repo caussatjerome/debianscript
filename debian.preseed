@@ -1,0 +1,129 @@
+#### Fichier de preseed pour Debian jessie
+# Configurer la locale permet aussi de configurer
+# la langue et le pays de l'OS
+d-i debian-installer/locale string fr_FR.UTF-8
+
+# Choix du clavier
+# keymap est un alias de keyboard-configuration/xkb-keymap
+d-i keymap select fr(latin9)
+# On désactive la sélection fine de la configuration du clavier
+d-i keyboard-configuration/toggle select No toggling
+
+### Configuration Réseau
+# On désactive la configuration réseau
+d-i netcfg/enable boolean true
+
+# Mais on doit quand même configurer le nom de machine
+d-i netcfg/get_hostname string testjessie
+# Ainsi que le domaine
+d-i netcfg/get_domain string example.com
+
+# Ici, on définit le nom local de la machine
+d-i netcfg/hostname string goofy
+
+### Mirror settings
+# Do not configure mirror repository
+#d-i apt-setup/no_mirror boolean true
+d-i mirror/country string manual
+d-i mirror/http/hostname string debian.proxad.net
+d-i mirror/http/directory string /debian
+d-i mirror/http/proxy string
+
+### Configuration des comptes
+# On indique le mot de passe root, sous forme d'un hash MD5 (echo "mypassword" | mkpasswd -s -H MD5)
+d-i passwd/root-password-crypted password xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# On ne souhaite pas créer d'autres utilisateurs
+d-i passwd/make-user boolean false
+
+### Gestion de l'horloge
+# L'horloge matérielle fonctionne sur la zone UTC
+d-i clock-setup/utc boolean true
+
+# La zone utilisée par l'OS sera celle de Paris
+d-i time/zone string Europe/Paris
+
+# On désactive l'utilisation de NTP pour configurer l'heure
+d-i clock-setup/ntp boolean true
+
+### Partitioning
+# Nous voulons une table de partition au format GPT
+d-i partman-basicfilesystems/choose_label string gpt
+d-i partman-basicfilesystems/default_label string gpt
+d-i partman-partitioning/choose_label string gpt
+d-i partman-partitioning/default_label string gpt
+d-i partman/choose_label string gpt
+d-i partman/default_label string gpt
+partman-partitioning partman-partitioning/choose_label select gpt
+
+# Seul le premier disque est partionné
+d-i partman-auto/disk string /dev/sda
+# On partionne en "normal": pas de RAID ni de LVM
+d-i partman-auto/method string regular
+# Pour être sûr, on supprime une éventuelle configuration LVM
+d-i partman-lvm/device_remove_lvm boolean true
+# Même chose pour le RAID
+d-i partman-md/device_remove_md boolean true
+# Chaînes pour ne pas toucher la configuration LVM (donc pas de configuration)
+d-i partman-lvm/confirm boolean true
+d-i partman-lvm/confirm_nooverwrite boolean true
+
+# L'installation sera simple: on fout tout dans une seule partition
+d-i partman-auto/choose_recipe select atomic
+
+# On valide sans confirmation la configuration de partman
+d-i partman-md/confirm boolean true
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+
+# fstab utilisera des UUID plutôt que des noms de périphériques
+d-i partman/mount_style select uuid
+
+### Installation du système
+# On ne souhaite pas installer les paquets recommandés
+# L'installation sera limitée aux paquets "essentials"
+d-i base-installer/install-recommends boolean false
+
+### Configuration d'apt
+# On indique qu'on ne souhaite pas utiliser de mirroir
+d-i apt-setup/use_mirror boolean true
+d-i apt-setup/no_mirror boolean false
+# On active les services security et updates
+d-i apt-setup/services-select multiselect security, updates
+d-i apt-setup/security_host string security.debian.org
+# Notez qu'on ne peut pas modifier la chaîne pour updates.
+# Ensuite, on indique quel est notre dépôt local (le premier qui démarre à 0)
+d-i apt-setup/local0/repository string \
+       http://debian.proxad.net/debian stable main contrib
+# On peut même y mettre un commentaire qui sera injecté dans le fichier sources.list
+d-i apt-setup/local0/comment string Serveur principal
+
+# Pas d'envoi de rapport vers popcon
+popularity-contest popularity-contest/participate boolean false
+
+### Configuration de GRUB
+# Seul Debian sera géré par GRUB
+d-i grub-installer/only_debian boolean true
+
+# Si on détecte un autre OS, on installera GRUB sur le MBR
+d-i grub-installer/with_other_os boolean true
+
+# On installe GRUB sur /dev/sda
+d-i grub-installer/bootdev  string /dev/sda
+
+## Suppression de paquets non désirés
+d-i preseed/late_command string \
+    in-target apt-get -y purge vim-tiny; \
+    in-target apt-get -y purge vim-common
+
+### Fin de l'installation
+# Désactivation du message indiquant que l'installation est terminée.
+d-i finish-install/reboot_in_progress note
+
+# Pas d'éjection du média d'installation (bien pour faire des tests sur une VM)
+d-i cdrom-detect/eject boolean true
+
+# Une fois l'installation terminée, on éteint la machine
+d-i debian-installer/exit/poweroff boolean true
