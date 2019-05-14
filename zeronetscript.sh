@@ -42,4 +42,4 @@ iptables-save
 sed -i '/ControlPort /s/^#//' /etc/tor/torrc
 sed -i '/CookieAuthentication /s/^#//' /etc/tor/torrc
 sed -i '/RunAsDaemon /s/^#//' /etc/tor/torrc
-#reboot
+reboot
