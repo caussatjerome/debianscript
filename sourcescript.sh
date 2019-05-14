@@ -18,9 +18,10 @@ wget https://ftp-master.debian.org/keys/archive-key-9-security.asc
 wget https://ftp-master.debian.org/keys/archive-key-10.asc
 wget https://ftp-master.debian.org/keys/archive-key-10-security.asc
 #import systemmonitor sign key:
-wget http://repos.systemmonitor.eu.com/rmmagent/Debian_6.0/Release.keys -O rmm6.asc
-wget http://repos.systemmonitor.eu.com/rmmagent/Debian_7.0/Release.keys -O rmm7.asc
-wget http://repos.systemmonitor.eu.com/rmmagent/Debian_8.0/Release.keys -O rmm8.asc
+wget http://repos.systemmonitor.eu.com/rmmagent/Debian_6.0/Release.key -O rmm6.asc
+wget http://repos.systemmonitor.eu.com/rmmagent/Debian_7.0/Release.key -O rmm7.asc
+wget http://repos.systemmonitor.eu.com/rmmagent/Debian_8.0/Release.key -O rmm8.asc
+wget http://repos.systemmonitor.eu.com/rmmagent/Debian_9.0/Release.key -O rmm9.asc
 #import Freenet Project sign key:
 wget https://freenetproject.org/assets/keyring.gpg
 #add key :1
