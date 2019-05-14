@@ -20,7 +20,7 @@ echo '# Actions'>>/etc/init.d/zeronet
 echo 'case "$1" in'>>/etc/init.d/zeronet
 echo '    start)'>>/etc/init.d/zeronet
 echo '        rm -f /etc/ZeroNet-master/data/lock.pid'>>/etc/init.d/zeronet
-echo '        python2 /etc/ZeroNet-master/zeronet.py --ui_ip 0.0.0.0'>>/etc/init.d/zeronet
+echo '        python2 /etc/ZeroNet-master/zeronet.py'>>/etc/init.d/zeronet
 echo '        ;;'>>/etc/init.d/zeronet
 echo '    stop)'>>/etc/init.d/zeronet
 echo '        # STOP'>>/etc/init.d/zeronet
@@ -30,6 +30,18 @@ echo '        # RESTART'>>/etc/init.d/zeronet
 echo '        ;;'>>/etc/init.d/zeronet
 echo 'esac'>>/etc/init.d/zeronet
 echo 'exit 0'>>/etc/init.d/zeronet
+
+#configure Zeronet.conf
+mv /etc/ZeroNet-master/plugins/disabled-UiPassword /etc/ZeroNet-master/plugins/UiPassword
+echo 'type new password for protect access'
+read -sp 'Password: ' passvara
+
+echo [global]>/etc/ZeroNet-master/zeronet.com
+echo optional_limit = 20%
+echo tor = always
+echo tor_controller = 127.0.0.1:9051
+echo tor_proxy = 127.0.0.1:9050
+echo ui_password = "$passvara"
 
 #configure starting
 chmod 775 /etc/init.d/zeronet
