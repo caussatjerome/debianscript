@@ -19,7 +19,7 @@ echo '# Actions'>>/etc/init.d/zeronet
 echo 'case "$1" in'>>/etc/init.d/zeronet
 echo '    start)'>>/etc/init.d/zeronet
 echo '        rm -f /etc/ZeroNet-master/data/lock.pid'>>/etc/init.d/zeronet
-echo '        python2 /etc/ZeroNet-master/zeronet.py --ui_ip 10.0.0.2'>>/etc/init.d/zeronet
+echo '        python2 /etc/ZeroNet-master/zeronet.py --ui_ip 0.0.0.0:43110'>>/etc/init.d/zeronet
 echo '        ;;'>>/etc/init.d/zeronet
 echo '    stop)'>>/etc/init.d/zeronet
 echo '        # STOP'>>/etc/init.d/zeronet
@@ -47,7 +47,7 @@ echo Wants=tor.service>>/etc/systemd/system/zeronet.service
 echo After=network-online.target network.target tor.service>>/etc/systemd/system/zeronet.service
 echo [Service]>>/etc/systemd/system/zeronet.service
 echo EnvironmentFile=/etc/ZeroNet-master/zeronet.conf>>/etc/systemd/system/zeronet.service
-echo ExecStart=/etc/ZeroNet-master/zeronet.py --ui_host 0.0.0.0>>/etc/systemd/system/zeronet.service
+echo ExecStart=/etc/ZeroNet-master/zeronet.py --ui_host 0.0.0.0:43110>>/etc/systemd/system/zeronet.service
 echo Restart=on-failure>>/etc/systemd/system/zeronet.service
 echo '# Configures the time to wait before service is stopped forcefully.'>>/etc/systemd/system/zeronet.service
 echo User=yourusernamerunningtheservice>>/etc/systemd/system/zeronet.service
