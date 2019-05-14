@@ -31,7 +31,7 @@ d-i mirror/http/proxy string
 
 ### Configuration des comptes
 # On indique le mot de passe root, sous forme d'un hash MD5 (echo "mypassword" | mkpasswd -s -H MD5)
-d-i passwd/root-password-crypted password xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+d-i passwd/root-password-crypted password e8e22a3e1832d33fd30d337120c007f5
 
 # On ne souhaite pas créer d'autres utilisateurs
 d-i passwd/make-user boolean false
