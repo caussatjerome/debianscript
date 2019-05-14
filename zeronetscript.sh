@@ -42,4 +42,8 @@ iptables-save
 sed -i '/ControlPort /s/^#//' /etc/tor/torrc
 sed -i '/CookieAuthentication /s/^#//' /etc/tor/torrc
 sed -i '/RunAsDaemon /s/^#//' /etc/tor/torrc
+#configure ip show on logon console
+iface=$(ip addr show | awk '/inet.*brd/{print $NF; exit}')
+echo 'ip addr: \4{'$iface'}'>>/etc/issue
+
 reboot
