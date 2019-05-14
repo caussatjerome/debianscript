@@ -30,7 +30,7 @@ echo '        ;;'>>/etc/init.d/zeronet
 echo 'esac'>>/etc/init.d/zeronet
 echo 'exit 0'>>/etc/init.d/zeronet
 
-chmod 770 /etc/init.d/zeronet
+chmod 775 /etc/init.d/zeronet
 update-rc.d zeronet defaults
 
 #set as service method 1:
@@ -55,6 +55,6 @@ echo TimeoutStopSec=30min>>/etc/systemd/system/zeronet.service
 echo [Install]>>/etc/systemd/system/zeronet.service
 echo WantedBy=multi-user.target>>/etc/systemd/system/zeronet.service
 
-chmod 770 /etc/systemd/system/zeronet.service
+chmod 775 /etc/systemd/system/zeronet.service
 systemctl daemon-reload
 systemctl enable zeronet.service
