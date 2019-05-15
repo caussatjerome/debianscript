@@ -37,11 +37,14 @@ echo 'type new password for protect access'
 read -sp 'Password: ' passvara
 
 echo [global]>/etc/ZeroNet-master/zeronet.com
-echo optional_limit = 20%
-echo tor = always
-echo tor_controller = 127.0.0.1:9051
-echo tor_proxy = 127.0.0.1:9050
-echo ui_password = "$passvara"
+echo optional_limit = 20%>>/etc/ZeroNet-master/zeronet.com
+echo tor = always>>/etc/ZeroNet-master/zeronet.com
+echo tor_controller = 127.0.0.1:9051>>/etc/ZeroNet-master/zeronet.com
+echo tor_proxy = 127.0.0.1:9050>>/etc/ZeroNet-master/zeronet.com
+echo ui_password = "$passvara">>/etc/ZeroNet-master/zeronet.com
+echo ui_ip = 0.0.0.0>>/etc/ZeroNet-master/zeronet.com
+echo ui_host = *>>/etc/ZeroNet-master/zeronet.com
+echo ui_trans_proxy = true>>/etc/ZeroNet-master/zeronet.com
 
 #configure starting
 chmod 775 /etc/init.d/zeronet
