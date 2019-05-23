@@ -1,29 +1,29 @@
 #import signing keys for all distrib debian :
 mkdir keys
 cd keys
-wget https://ftp-master.debian.org/keys/ziyi_key_2002.asc
-wget https://ftp-master.debian.org/keys/ziyi_key_2003.asc
-wget https://ftp-master.debian.org/keys/ziyi_key_2003v2.asc
-wget https://ftp-master.debian.org/keys/ziyi_key_2004.asc
-wget https://ftp-master.debian.org/keys/ziyi_key_2005.asc
-wget https://ftp-master.debian.org/keys/ziyi_key_2006.asc
-wget https://ftp-master.debian.org/keys/archive-key-4.0.asc
-wget https://ftp-master.debian.org/keys/archive-key-5.0.asc
-wget https://ftp-master.debian.org/keys/archive-key-6.0.asc
-wget https://ftp-master.debian.org/keys/archive-key-7.0.asc
-wget https://ftp-master.debian.org/keys/archive-key-8.asc
-wget https://ftp-master.debian.org/keys/archive-key-8-security.asc
-wget https://ftp-master.debian.org/keys/archive-key-9.asc
-wget https://ftp-master.debian.org/keys/archive-key-9-security.asc
-wget https://ftp-master.debian.org/keys/archive-key-10.asc
-wget https://ftp-master.debian.org/keys/archive-key-10-security.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/ziyi_key_2002.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/ziyi_key_2003.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/ziyi_key_2003v2.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/ziyi_key_2004.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/ziyi_key_2005.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/ziyi_key_2006.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-4.0.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-5.0.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-6.0.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-7.0.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-8.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-8-security.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-9.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-9-security.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-10.asc
+wget --no-check-certificate https://ftp-master.debian.org/keys/archive-key-10-security.asc
 #import systemmonitor sign key:
-wget http://repos.systemmonitor.eu.com/rmmagent/Debian_6.0/Release.key -O rmm6.asc
-wget http://repos.systemmonitor.eu.com/rmmagent/Debian_7.0/Release.key -O rmm7.asc
-wget http://repos.systemmonitor.eu.com/rmmagent/Debian_8.0/Release.key -O rmm8.asc
-wget http://repos.systemmonitor.eu.com/rmmagent/Debian_9.0/Release.key -O rmm9.asc
+wget --no-check-certificate http://repos.systemmonitor.eu.com/rmmagent/Debian_6.0/Release.key -O rmm6.asc
+wget --no-check-certificate http://repos.systemmonitor.eu.com/rmmagent/Debian_7.0/Release.key -O rmm7.asc
+wget --no-check-certificate http://repos.systemmonitor.eu.com/rmmagent/Debian_8.0/Release.key -O rmm8.asc
+wget --no-check-certificate http://repos.systemmonitor.eu.com/rmmagent/Debian_9.0/Release.key -O rmm9.asc
 #import Freenet Project sign key:
-wget https://freenetproject.org/assets/keyring.gpg
+wget --no-check-certificate https://freenetproject.org/assets/keyring.gpg
 #add key :1
 apt-key add *.gpg
 apt-key add *.asc
