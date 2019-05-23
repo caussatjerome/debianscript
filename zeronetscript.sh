@@ -1,6 +1,6 @@
 apt-get -y install msgpack-python python-gevent
 cd /etc
-wget https://github.com/HelloZeroNet/ZeroNet/archive/master.tar.gz
+wget --no-check-certificate https://github.com/HelloZeroNet/ZeroNet/archive/master.tar.gz
 tar xvpfz master.tar.gz
 rm master.tar.gz
 
