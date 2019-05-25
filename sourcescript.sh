@@ -1,3 +1,4 @@
+#!/bin/sh
 #import signing keys for all distrib debian :
 mkdir keys
 cd keys
@@ -45,15 +46,20 @@ echo deb https://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>
 echo deb https://ftp.u-picardie.fr/mirror/debian/ oldstable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
 #sources kali :
 echo deb https://http.kali.org/kali kali-rolling main contrib non-free>/etc/apt/sources.list.d/kali_deb.list
+#apt-get install recommanded et suggested packets :
+echo 'APT::Install-Recommends "true";'>>/etc/apt/apt.conf
+echo 'APT::Install-Suggests "true";'>>/etc/apt/apt.conf
 
 #preinstall tools :
 apt-get update
-apt-get -y install apt-transport-https apt-transport-tor apt-p2p aptitude net-tools sudo mlocate --fix-broken --install-suggests
+apt-get -y dist-upgrade --fix-broken
+apt-get -y install apt-transport-https apt-transport-tor apt-p2p aptitude net-tools sudo mlocate --fix-broken
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 sudo sed -i 's%http://%http://127.0.0.1:9977/%g' /etc/apt/sources.list
 sudo rm -rf /var/cache/apt-p2p/cache/*
 
-apt-get -y install smartmontools chkconfig build-essential fakeroot devscripts git default-jre --fix-broken --install-suggests
+apt-get -y install smartmontools chkconfig build-essential fakeroot devscripts git default-jre --fix-broken
 echo deb tor://sdscoq7snqtznauu.onion/torproject.org debian main>/etc/apt/sources.list.d/tor.list
 apt-get update
-apt-get -y install tor --fix-broken --install-suggests
+apt-get -y install tor --fix-broken
+exit 0
