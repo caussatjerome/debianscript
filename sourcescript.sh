@@ -24,6 +24,8 @@ wget --no-check-certificate http://repos.systemmonitor.eu.com/rmmagent/Debian_8.
 wget --no-check-certificate http://repos.systemmonitor.eu.com/rmmagent/Debian_9.0/Release.key -O rmm9.asc
 #import Freenet Project sign key:
 wget --no-check-certificate https://freenetproject.org/assets/keyring.gpg
+#add key for Kali Linux repo :
+apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys 7D8D0BF6
 #add key :1
 apt-key add *.gpg
 apt-key add *.asc
@@ -33,14 +35,17 @@ rm *.*
 cd ..
 rmdir keys
 #update sourceslist :
-echo #picardie et security>/etc/apt/sources.list.d/old_deb.list
-echo deb http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>/etc/apt/sources.list.d/old_deb.list
-echo deb-src http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>/etc/apt/sources.list.d/old_deb.list
-echo deb http://security.debian.org/ stretch/updates main contrib>/etc/apt/sources.list.d/old_deb.list
-echo deb-src http://security.debian.org/ stretch/updates main contrib>/etc/apt/sources.list.d/old_deb.list
-echo #comptability sources :>/etc/apt/sources.list.d/old_deb.list
-echo deb http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>/etc/apt/sources.list.d/old_deb.list
-echo deb http://ftp.u-picardie.fr/mirror/debian/ oldstable main contrib non-free>/etc/apt/sources.list.d/old_deb.list
+echo '#picardie et security'>/etc/apt/sources.list.d/old_deb.list
+echo deb http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
+echo deb-src http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
+echo deb http://security.debian.org/ stretch/updates main contrib>>/etc/apt/sources.list.d/old_deb.list
+echo deb-src http://security.debian.org/ stretch/updates main contrib>>/etc/apt/sources.list.d/old_deb.list
+echo '#comptability sources :'>>/etc/apt/sources.list.d/old_deb.list
+echo deb http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
+echo deb http://ftp.u-picardie.fr/mirror/debian/ oldstable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
+#sources kali :
+echo deb http://http.kali.org/kali kali-rolling main contrib non-free>/etc/apt/sources.list.d/kali_deb.list
+
 #preinstall tools :
 apt-get update
 apt-get -y install apt-transport-https apt-transport-tor apt-p2p aptitude net-tools sudo mlocate --fix-broken
