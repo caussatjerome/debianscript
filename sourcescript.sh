@@ -36,15 +36,15 @@ cd ..
 rmdir keys
 #update sourceslist :
 echo '#picardie et security'>/etc/apt/sources.list.d/old_deb.list
-echo deb http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
-echo deb-src http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
-echo deb http://security.debian.org/ stretch/updates main contrib>>/etc/apt/sources.list.d/old_deb.list
-echo deb-src http://security.debian.org/ stretch/updates main contrib>>/etc/apt/sources.list.d/old_deb.list
+echo deb https://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
+echo deb-src https://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
+echo deb https://security.debian.org/ stretch/updates main contrib>>/etc/apt/sources.list.d/old_deb.list
+echo deb-src https://security.debian.org/ stretch/updates main contrib>>/etc/apt/sources.list.d/old_deb.list
 echo '#comptability sources :'>>/etc/apt/sources.list.d/old_deb.list
-echo deb http://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
-echo deb http://ftp.u-picardie.fr/mirror/debian/ oldstable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
+echo deb https://ftp.u-picardie.fr/mirror/debian/ stable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
+echo deb https://ftp.u-picardie.fr/mirror/debian/ oldstable main contrib non-free>>/etc/apt/sources.list.d/old_deb.list
 #sources kali :
-echo deb http://http.kali.org/kali kali-rolling main contrib non-free>/etc/apt/sources.list.d/kali_deb.list
+echo deb https://http.kali.org/kali kali-rolling main contrib non-free>/etc/apt/sources.list.d/kali_deb.list
 
 #preinstall tools :
 apt-get update
