@@ -1,5 +1,5 @@
 #install prerequire (haveged = secure entropy)
-apt-get -y install msgpack-python python-gevent haveged
+apt-get -y install msgpack-python python-gevent haveged  --install-suggests
 cd /etc
 wget --no-check-certificate https://github.com/HelloZeroNet/ZeroNet/archive/master.tar.gz
 tar xvpfz master.tar.gz
