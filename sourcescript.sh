@@ -52,14 +52,14 @@ echo 'APT::Install-Suggests "true";'>>/etc/apt/apt.conf
 
 #preinstall tools :
 apt-get update
-apt-get -y dist-upgrade --fix-broken
-apt-get -y install apt-transport-https apt-transport-tor apt-p2p aptitude net-tools sudo mlocate --fix-broken
+apt-get -y dist-upgrade --fix-broken --fix-missing
+apt-get -y install apt-transport-https apt-transport-tor apt-p2p aptitude net-tools sudo mlocate --fix-broken --fix-missing
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
 sudo sed -i 's%http://%http://127.0.0.1:9977/%g' /etc/apt/sources.list
 sudo rm -rf /var/cache/apt-p2p/cache/*
 
-apt-get -y install smartmontools chkconfig build-essential dkms fakeroot devscripts git default-jre --fix-broken
+apt-get -y install smartmontools chkconfig build-essential dkms fakeroot devscripts git default-jre --fix-broken --fix-missing
 echo deb tor://sdscoq7snqtznauu.onion/torproject.org debian main>/etc/apt/sources.list.d/tor.list
 apt-get update
-apt-get -y install tor --fix-broken
+apt-get -y install tor --fix-broken --fix-missing
 exit 0
